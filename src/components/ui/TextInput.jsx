@@ -1,11 +1,9 @@
-import { style } from "@vanilla-extract/css";
 import { useRef, useCallback } from "react";
 
 export const TextInput = ({ inputRef, placeholder, id, divCn, inputCn }) => {
   return (
     <div className={divCn}>
       {/* <label htmlFor={id}>{placeholder}</label> */}
-
       <input
         type="text"
         id={id}
@@ -17,10 +15,9 @@ export const TextInput = ({ inputRef, placeholder, id, divCn, inputCn }) => {
   );
 };
 
-//custom hook 리액트의 훅을 나만의 스타일로 만들어서 사용한다.
+// custom Hook 리액트의 훅을 나만의 스타일로 만들어서 사용한다.
 export const useTextInput = () => {
   const ref = useRef();
-
   const focus = useCallback(() => {
     if (ref.current) {
       ref.current.focus();
@@ -28,7 +25,7 @@ export const useTextInput = () => {
   }, [ref]);
 
   const Component = useCallback(
-    ({ placeholder, id }) => {
+    ({ placeholder, id, divCn, inputCn }) => {
       return (
         <TextInput
           id={id}
@@ -46,7 +43,5 @@ export const useTextInput = () => {
     ref,
     focus,
     Component,
-    divCn,
-    inputCn,
   };
 };

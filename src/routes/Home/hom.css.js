@@ -6,19 +6,25 @@ const styles = {
     fontSize: 100,
     fontWeight: 900,
     color: "tomato",
+    ":hover": {
+      color: "blue",
+    },
   }),
-
   input: {
     div: style({
-      displqy: "flex",
+      display: "flex",
       flexDirection: "column",
     }),
     input: style({
       outline: "none",
-      background: "transparent",
+      backgroundColor: "transparent",
       border: `1px solid ${OpenColor.green[6]}`,
-      color: "whitesmoke",
+      color: OpenColor.gray[2],
+      "::placeholder": {
+        color: "tomato",
+      },
     }),
   },
 };
+
 export default styles;
