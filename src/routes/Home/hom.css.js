@@ -1,5 +1,6 @@
 import { style } from "@vanilla-extract/css";
 import OpenColor from "open-color";
+import { Container } from "postcss";
 
 const styles = {
   h1: style({
@@ -23,6 +24,19 @@ const styles = {
       "::placeholder": {
         color: "tomato",
       },
+    }),
+  },
+  container: {
+    div: style({ padding: "0 30px" }),
+    p: style({
+      fontWeight: 600,
+      marginBottom: 10,
+      fontSize: "1.1rem",
+    }),
+    ul: style({
+      display: "flex",
+      flexDirection: "column",
+      rowGap: 10,
     }),
   },
 };

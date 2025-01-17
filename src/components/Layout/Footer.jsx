@@ -1,8 +1,9 @@
 import React from "react";
 import { fMenus } from "../../assets/fakebase";
-import { Link } from "react-router-dom";
 import { Button } from "../ui/Button";
 import OpenColor from "open-color";
+import FooterItem from "./FooterItem";
+import { HiLanguage } from "react-icons/hi2";
 
 //<Link to={경로}>{이름}</Link>
 
@@ -13,8 +14,11 @@ const Footer = () => {
         background: OpenColor.gray[9],
         color: OpenColor.gray[0],
         padding: 10,
+        display: "flex",
+        flexDirection: "column",
         rowGap: 20,
-        alignItems: "center",
+        alignItems: "start",
+        fontSize: "0.75rem",
       }}
     >
       <p>질문이 있으신가요? 문의 전화: 00-308-321-0161 (수신자 부담)</p>
@@ -22,22 +26,20 @@ const Footer = () => {
       <ul style={{ display: "flex", flexDirection: "column", rowGap: 10 }}>
         {fMenus.map((menu, index) => {
           return (
-            <Link
-              key={index}
-              to={menu.path}
-              style={{
-                color: OpenColor.gray[5],
-                textDecoration: "underline",
-                fontSize: ".65rem",
-              }}
-            >
-              {menu.name}
-            </Link>
+            <FooterItem
+              key={menu.path}
+              {...menu}
+              // {}안에 ...객체의 변수명을 적으면 복사하는 뜻이다.
+              //리액트 컴포넌트에 이렇게 하는것은 복사한 객체의 저눕를 전달해준다는 뜻이다.
+            />
           );
         })}
       </ul>
 
-      <Button style={{ border: "1px solid" }}>한국어</Button>
+      <Button style={{ border: "1px solid" }}>
+        <HiLanguage />
+        한국어
+      </Button>
       <p>넷플릭스 대한민국</p>
       <p>
         넷플릭스서비시스코리아 유한회사 통신판매업신고번호:

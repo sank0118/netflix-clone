@@ -1,6 +1,4 @@
-import React from "react";
-
-const SampleItem = () => {
+const SampleItem = ({ text }) => {
   return <p>{text}</p>;
 };
 

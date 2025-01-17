@@ -11,6 +11,7 @@ import LearnUseRef from "./LearnReact/learn-useRef";
 import LearnUSeMemo from "./LearnReact/learn-useMemo";
 import Todo from "./todo";
 import PDSample from "./LearnReact/prop-drilling/sample1";
+import PropsDrilling2 from "./props-drilling/index";
 
 const AppRouter = () => {
   return (
@@ -22,6 +23,7 @@ const AppRouter = () => {
           <Route path="faq" element={<FaQ />} />
           <Route path="contact-us" element={<ContactUs />} />
         </Route>
+
         <Route path="/learn-react">
           <Route index element={<LearnReact />} />
           <Route path="useState" element={<UseState />} />
@@ -30,6 +32,8 @@ const AppRouter = () => {
           <Route path="learnMemo" element={<LearnUSeMemo />} />
           <Route path="PD" element={<PDSample />} />
         </Route>
+
+        <Route path="PD2" element={<PropsDrilling2 />} />
 
         <Route path="todo" element={<Todo />} />
       </Routes>

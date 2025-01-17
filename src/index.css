@@ -23,7 +23,7 @@ input {
 }
 
 button {
-  background-color: whitesmoke;
+  /* background-color: whitesmoke; */
   padding: 10px;
   border-radius: 4px;
 }
