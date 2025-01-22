@@ -1,8 +1,7 @@
-import { style } from "@vanilla-extract/css";
-import OpenColor from "open-color";
+import { style } from "@vanilla-extract/css"
+import OpenColor from "open-color"
 
-const imgUrl =
-  "https://cdn.pixabay.com/photo/2024/12/31/01/02/costa-rica-9301364_640.jpg";
+const imgUrl = "https://cdn.pixabay.com/photo/2017/01/18/17/52/calendar-1990453_1280.jpg"
 
 const styles = {
   container: style({
@@ -17,56 +16,49 @@ const styles = {
       height: "100%",
       top: 0,
       left: 0,
-      background: "rgba(0,0,0,.6)",
+      backgroundColor: "rgba(0,0,0,.6)",
       zIndex: -1,
     },
   }),
-
   div: style({
     textAlign: "center",
   }),
-
   h1: style({
     fontWeight: 900,
     fontSize: "2rem",
   }),
-
-  p: style({
-    margin: "10px 0",
-  }),
+  p: style({ margin: "10px 0" }),
   form: style({
     display: "flex",
     flexDirection: "column",
     rowGap: 20,
   }),
-
   input: style({
-    background: "rgba(255,255,255,.1)",
+    backgroundColor: "rgba(255,255,255,.1)",
     outline: "none",
-    border: "1px solid green",
+    border: `1px solid ${OpenColor.green[6]}`,
     color: OpenColor.gray[0],
     borderRadius: 4,
   }),
-
   button: style({
-    background: OpenColor.red[7],
+    backgroundColor: OpenColor.red[7],
+    transition: "all .2s",
     display: "flex",
     alignItems: "center",
-    transition: "all .3s",
+    columnGap: 10,
     ":hover": {
-      background: OpenColor.red[7],
+      backgroundColor: OpenColor.red[7],
       opacity: 0.8,
     },
     ":active": {
       opacity: 0.6,
     },
   }),
-
   icon: style({}),
   buttonWrap: style({
     display: "flex",
     justifyContent: "center",
   }),
-};
+}
 
-export default styles;
+export default styles

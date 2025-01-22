@@ -1,17 +1,18 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import Layout from "../components/Layout";
-import Signin from "./Siginin";
-import FaQ from "./FAQ";
-import ContactUs from "./ContactUs";
-import LearnReact from "./LEarnREact";
-import UseState from "./LearnReact/LearnuseState";
+import Signin from "./Signin";
+import FAQ from "./FAQ";
+import ContactUs from "./contact-us";
+import LearnReact from "./LearnReact";
+import UseState from "./LearnReact/LearnUseState";
 import LearnUseEffect from "./LearnReact/learn-useEffect";
 import LearnUseRef from "./LearnReact/learn-useRef";
-import LearnUSeMemo from "./LearnReact/learn-useMemo";
+import LearnUseMemo from "./LearnReact/learn-useMemo";
 import Todo from "./todo";
-import PDSample from "./LearnReact/prop-drilling/sample1";
-import PropsDrilling2 from "./props-drilling/index";
+import PDSample from "./LearnReact/props-drilling/sample1";
+import PropsDrilling2 from "./props-drilling";
+import RandomNumber from "./Home/random-number";
 
 const AppRouter = () => {
   return (
@@ -20,24 +21,33 @@ const AppRouter = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="login" element={<Signin />} />
-          <Route path="faq" element={<FaQ />} />
+          <Route path="faq" element={<FAQ />} />
           <Route path="contact-us" element={<ContactUs />} />
         </Route>
+
+        <Route path="/random-number" element={<RandomNumber />} />
 
         <Route path="/learn-react">
           <Route index element={<LearnReact />} />
           <Route path="useState" element={<UseState />} />
-          <Route path="learnUse" element={<LearnUseEffect />} />
-          <Route path="learnREf" element={<LearnUseRef />} />
-          <Route path="learnMemo" element={<LearnUSeMemo />} />
-          <Route path="PD" element={<PDSample />} />
+
+          <Route path="useEffect" element={<LearnUseEffect />} />
+
+          <Route path="useRef" element={<LearnUseRef />} />
+          <Route path="useMemo" element={<LearnUseMemo />} />
+
+          <Route path="props-drilling" element={<PDSample />} />
         </Route>
 
-        <Route path="PD2" element={<PropsDrilling2 />} />
-
         <Route path="todo" element={<Todo />} />
+
+        {/*  */}
+        <Route path="props-drilling" element={<PropsDrilling2 />} />
+
+        {/*  */}
       </Routes>
     </BrowserRouter>
   );
 };
+
 export default AppRouter;

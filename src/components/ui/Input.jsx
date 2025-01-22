@@ -1,27 +1,27 @@
-import { useState, useEffect } from "react";
-import inputStyles from "./input.css";
+import { useState, useEffect } from "react"
+import inputStyles from "./input.css"
 
 const Input = ({ id, placeholder, value, setValue, type }) => {
   //   const [value, setValue] = useState("")
-  const [isFocused, setIsFocused] = useState(false);
+  const [isFocused, setIsFocused] = useState(false)
 
   const onFocus = () => {
-    setIsFocused(true);
-  };
+    setIsFocused(true)
+  }
 
   const onBlur = () => {
     if (value.length > 0) {
-      return setIsFocused(true);
+      return setIsFocused(true)
     }
-    setIsFocused(false);
-  };
+    setIsFocused(false)
+  }
 
   useEffect(() => {
-    console.log(value);
+    console.log(value)
     if (value.length > 0) {
-      setIsFocused(true);
+      setIsFocused(true)
     }
-  }, [value]);
+  }, [value])
 
   return (
     <div className={inputStyles.container}>
@@ -38,7 +38,7 @@ const Input = ({ id, placeholder, value, setValue, type }) => {
         id={id}
       />
     </div>
-  );
-};
+  )
+}
 
-export default Input;
+export default Input

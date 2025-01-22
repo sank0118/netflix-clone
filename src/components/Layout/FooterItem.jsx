@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 
 const FooterItem = ({ name, path }) => {
   return (
@@ -11,7 +11,7 @@ const FooterItem = ({ name, path }) => {
     >
       {name}
     </Link>
-  );
-};
+  )
+}
 
-export default FooterItem;
+export default FooterItem

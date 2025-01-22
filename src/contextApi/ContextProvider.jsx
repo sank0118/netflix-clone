@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, createContext } from "react";
+import { useState, useEffect, useContext, createContext } from "react"
 
 // 초기값 useState=> 초기값
 
@@ -11,30 +11,30 @@ const initialState = {
   },
   onUserLogin: () => {},
   onUserLogout: () => {},
-};
+}
 
-const Context = createContext(initialState);
+const Context = createContext(initialState)
 
 const ContextProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null)
 
   const onUserLogin = (email, uid) => {
-    setUser({ email, uid });
-  };
+    setUser({ email, uid })
+  }
 
   const onUserLogout = () => {
-    setUser(null);
-  };
+    setUser(null)
+  }
 
-  const [email, setEmail] = useState(initialState.email);
+  const [email, setEmail] = useState(initialState.email)
 
   const onChangeEmail = (newEmail) => {
-    setEmail(newEmail);
-  };
+    setEmail(newEmail)
+  }
 
   useEffect(() => {
-    console.log({ email });
-  }, [email]);
+    console.log({ email })
+  }, [email])
 
   return (
     <Context.Provider
@@ -48,13 +48,13 @@ const ContextProvider = ({ children }) => {
     >
       {children}
     </Context.Provider>
-  );
-};
+  )
+}
 
 // 리액트 훅과 비슷한 작명법
 // use시작하는 새로운 훅을 커스텀훅 이라고 부름 Custom Hook
 const useMyContext = () => {
-  return useContext(Context);
-};
+  return useContext(Context)
+}
 
-export { Context, ContextProvider, useMyContext };
+export { Context, ContextProvider, useMyContext }

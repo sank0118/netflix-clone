@@ -1,248 +1,282 @@
-import { useEffect, useState, useCallback } from "react";
+// import { } from 'react'
+import { useEffect, useState, useMemo , useCallback} from "react"
 
 const UseState = () => {
-  const [string, setString] = useState("");
+  // const initialString = useMemo(() => '', [])
+  const [string, setString] = useState("")
+  // const string =''
 
-  const onChangeString = () => {
+  const onString = () => {
     setString((prev) => {
-      return `${prev} 덕현`;
-    });
-  };
+      // return prev + '덕현'
+      return `${prev} 덕현`
+    })
+  }
 
-  const [number, setNumber] = useState(0);
+  const [number, setNumber] = useState(2)
 
   const onMinus = () => {
-    setNumber((prev) => {
-      return prev - 1;
-    });
-  };
+    setNumber((prev) => prev - 1)
+  }
 
   const onReset = () => {
-    setNumber(0);
-  };
+    setNumber(0)
+  }
 
   const onPlus = () => {
+    // setNumber(prev => prev + 1)
     setNumber((prev) => {
-      return prev + 1;
-    });
-  };
+      return prev + 1
+    })
+  }
 
-  const [boolean, setBoolean] = useState(false);
-  const [boolean2, setBoolean2] = useState(false);
-  const [boolean3, setBoolean3] = useState(false);
+  const initialObj = useMemo(() => {
+    return { first: "덕현", last: "윤" }
+  }, [])
 
-  const onSwitch1 = () => {
-    setBoolean((prev) => {
-      return !prev;
-    });
-  };
-  const onSwitch2 = () => {
-    setBoolean2((prev) => {
-      return !prev;
-    });
-  };
-  const onSwitch3 = () => {
-    setBoolean3((prev) => {
-      return !prev;
-    });
-  };
+  const [obj, setObj] = useState(initialObj)
+  const [first, setFirst] = useState("")
+  const [last, setLast] = useState("")
 
-  const onMasterSwitch = () => {
-    if (!boolean && !boolean2 && !boolean3) {
-      setBoolean(true);
-      setBoolean2(true);
-      setBoolean3(true);
-      return;
-    }
-    setBoolean(false);
-    setBoolean2(false);
-    setBoolean3(false);
-  };
-
-  const [obj, setObj] = useState({ last: "강", first: "산" });
-
-  const [first, setFirst] = useState(obj.first);
-  const [last, setLast] = useState(obj.last);
-
-  const onLast = () => {
-    if (last.length === 0) {
-      return alert("입력해라, 쫌");
-    }
-    if (last === obj.last) {
-      return alert("달라진게 없다.");
-    }
-
-    setObj((prev) => {
-      return { ...prev, last };
-    });
-    alert("성을 개명하였습니다.");
-  };
-
-  const onFirst = () => {
+  const firstMessage = useMemo(() => {
     if (first.length === 0) {
-      return alert("입력해라, 쫌");
+      return "이름을 입력하세요."
     }
     if (first === obj.first) {
-      return alert("변경사항이 없습니다.");
+      return "변경사항이 없습니다."
     }
+    return null
+  }, [first, obj.first])
 
+  // const 함수이름 = useCallback(() => {}, [])
+  const onFirst = useCallback(
+    () => {
+      // setObj({ last: "윤", first })
+      // setObj((prev) => {
+      //   return { ...prev, first }
+      // })
+      if (firstMessage) {
+        return alert(firstMessage)
+      }
+  
+      setObj((prev) => ({ ...prev, first }))
+    }, [firstMessage, first]
+  )
+  const onLast = () => {
+    if (last.length === 0) {
+      return alert("성을 입력하세요.")
+    }
+    if (last === obj.last) {
+      return alert("변경사항이 없습니다.")
+    }
     setObj((prev) => {
-      return { ...prev, first };
-    });
-    alert("이름을 개명하였습니다.");
-  };
+      return { ...prev, last }
+    })
+  }
 
-  const [array, setArray] = useState(["a", "b", "c", "d"]);
-
-  const ㄱ = () => {
-    console.log(string.length);
-    if (string.length === 0) {
-      return alert("적어라 좀");
+  const onName = () => {
+    if (first.length === 0) {
+      return alert("이름을 입력하세요.")
+    }
+    if (first === obj.first) {
+      return alert("변경사항이 없습니다.")
     }
 
-    const found = array.find((item) => item === string);
+    if (last.length === 0) {
+      return alert("성을 입력하세요.")
+    }
+    if (last === obj.last) {
+      return alert("변경사항이 없습니다.")
+    }
+
+    setObj({ last, first, middle: "세바스찬" })
+  }
+
+  const [light, setLight] = useState(false)
+  const [light2, setLight2] = useState(false)
+  const [light3, setLight3] = useState(false)
+
+  const onLight1 = () => {
+    setLight((prev) => !prev)
+  }
+  const onLight2 = () => {
+    setLight2((prev) => !prev)
+  }
+  const onLight3 = () => {
+    setLight3((prev) => !prev)
+  }
+
+  const onMaster = () => {
+    if (!light && !light2 && !light3) {
+      setLight(true)
+      setLight2(true)
+      return setLight3(true)
+    }
+    setLight(false)
+    setLight2(false)
+    setLight3(false)
+  }
+
+  const [stringArray, setStringArray] = useState(["a", "b", "c"])
+  const onStringArray = () => {
+    const newString = string
+    console.log(newString)
+
+    if (newString.length === 0) {
+      return alert("값을 입력해주세요.")
+    }
+
+    const found = stringArray.find((item) => item === newString)
     if (found) {
-      return alert("중복된 값");
+      return alert("중복된 값입니다.")
     }
 
-    setArray((prev) => {
-      return [...prev, string];
-    });
-  };
-
-  //객체와 객체 비교는 다른 비교 할 수 있는 다른 고유값
+    setStringArray((prev) => {
+      return [...prev, newString]
+      // return [newString, ...prev]
+    })
+  }
 
   const [objArray, setObjArray] = useState([
-    { l: "김", f: "영화" },
-    { l: "이", f: "형진" },
-    { l: "강", f: "찬희" },
-  ]);
+    { first: "빈", last: "원" },
+    { first: "빈", last: "현" },
+    { first: "동건", last: "장" },
+  ])
 
   const onObjArray = () => {
-    const kyh = objArray[0];
-    const lhj = objArray[1];
+    const newFirst = first
+    const newLast = last
 
-    const newPerson = { l: last, f: first };
+    if (newFirst.length === 0) {
+      return alert("이름을 입력해주세요")
+    }
+    if (newLast.length === 0) {
+      return alert("성을 입력해주세요")
+    }
 
+    // 문자열 !== 문자열 , ===, !==
+    //숫자 ===, !==, >, <, >=, <=
+    //객체 와 객체 비교는 다른 비교할 수 잇는 다른 고유값
     const found = objArray.find((person) => {
-      const isSame = isSamePerson(newPerson, person);
-
-      if (isSame) {
-        return person;
+      const fullName = `${person.last} ${person.first}`
+      const newFullName = `${newLast} ${newFirst}`
+      if (fullName === newFullName) {
+        return person
       }
-    });
+    })
 
     if (found) {
-      return alert("동일한 인물이 존재합니다.");
+      return alert("중복된 이름입니다.")
     }
-    alert("새로운 인물입니다.");
 
-    setObjArray((prev) => {
-      return [newPerson, ...prev];
-    });
-  };
+    const newName = { first: newFirst, last: newLast }
+
+    setObjArray((prev) => [newName, ...prev])
+  }
 
   useEffect(() => {
-    console.log({
-      objArray,
-      array,
-    });
-  }, [objArray, array]);
+    console.log(obj)
+    // console.log(obj.last)
+    // console.log(obj["last"])
+  }, [obj])
+
+  useEffect(() => {
+    console.log(string)
+  }, [string])
 
   return (
     <div>
-      <h1>Learn useState</h1>
+      <p>
+        <b>string: {string}</b>
+      </p>
       <input
         type="text"
         value={string}
-        onChange={(e) => setString(e.target.value)}
+        onChange={(e) => {
+          setString(e.target.value) // () 직접 초기값과 같은 타입
+        }}
       />
-      <button onClick={onChangeString}>Change String</button>
-
-      <div>
-        <button onClick={onMinus}>-</button>
-        <button onClick={onReset}>{number}</button>
-        <button onClick={onPlus}>+</button>
-      </div>
-
-      <div>
-        <p>Switch is {boolean ? "On" : "Off"}</p>
-        <button onClick={onSwitch1}>Switch</button>
-      </div>
-
-      <div>
-        <p>Switch is {boolean2 ? "On" : "Off"}</p>
-        <button onClick={onSwitch2}>Switch</button>
-      </div>
-
-      <div>
-        <p>Switch is {boolean3 ? "On" : "Off"}</p>
-        <button onClick={onSwitch3}>Switch</button>
-      </div>
-
-      <button onClick={onMasterSwitch}>Master Switch</button>
+      <button onClick={onString}>FIRE</button>
 
       <div>
         <p>
-          {obj.last} {obj.first}
+          <b>number: {number}</b>
         </p>
-        <input
-          type="text"
-          value={last}
-          onChange={(e) => setLast(e.target.value)}
-          className="bg-gray-100 outline-none border-none border rounded hover:bg-gray-900 hover:text-white"
-          placeholder="새로운 성을 입력해주세요."
-        />
-        <button onClick={onLast} className="active:text-red-900">
-          성 개명
-        </button>
+        <div>
+          <button onClick={onMinus}>---</button>
+          <button onClick={onReset}>{number}</button>
+          <button onClick={onPlus}>+++</button>
+        </div>
       </div>
 
       <div>
-        <input
-          type="text"
-          value={first}
-          onChange={(e) => setFirst(e.target.value)}
-          className="bg-gray-100 outline-none border-none border rounded hover:bg-gray-900 hover:text-white"
-          placeholder="새로운 이름을 입력해주세요."
-        />
-        <button onClick={onFirst} className="active:text-red-900">
-          이름 개명
-        </button>
+        <p>
+          <b>
+            my full name: {obj.last} {obj.first}
+          </b>
+        </p>
+
+        <input type="text" value={first} onChange={(e) => setFirst(e.target.value)} />
+        <button onClick={onFirst}>이름 개명</button>
+
+        <input type="text" value={last} onChange={(e) => setLast(e.target.value)} />
+        <button onClick={onLast}>성 개명</button>
+
+        <button onClick={onName}>전체 이름 개명</button>
+      </div>
+
+      <div>
+        <div>
+          <p>light is {light ? "on" : "off"}</p>
+          <button onClick={onLight1}>room1 switch</button>
+        </div>
+        <div>
+          <p>light is {light2 ? "on" : "off"}</p>
+          <button onClick={onLight2}>room2 switch</button>
+        </div>
+        <div>
+          <p>light is {light3 ? "on" : "off"}</p>
+          <button onClick={onLight3}>room3 switch</button>
+        </div>
+
+        <div>
+          <button onClick={onMaster}>master switch</button>
+        </div>
       </div>
 
       <div>
         <input
           type="text"
           value={string}
-          onChange={(e) => setString(e.target.value)}
+          onChange={(e) => {
+            setString(e.target.value) // () 직접 초기값과 같은 타입
+          }}
         />
-        <button onClick={ㄱ}>Add to Array</button>
+        <button onClick={onStringArray}>Add String to StringArray</button>
+        <ul>
+          {stringArray.map((item, index) => {
+            return <li key={`${index}${item}`}>{item}</li>
+          })}
+        </ul>
       </div>
 
-      <button onClick={onObjArray}>Check Obj Array</button>
+      <div>
+        <input type="text" value={last} onChange={(e) => setLast(e.target.value)} />
+        <input type="text" value={first} onChange={(e) => setFirst(e.target.value)} />
+
+        <button onClick={onObjArray}>추가</button>
+        <ul>
+          {objArray.map((item, index) => {
+            return (
+              <li key={`${item}${index}`}>
+                {item.last} {item.first}
+              </li>
+            )
+          })}
+        </ul>
+      </div>
     </div>
-  );
-};
+  )
+}
 
-export default UseState;
-
-const isSamePerson = (p1, p2) => {
-  const name1 = `${p1.l} ${p1.f}`;
-  const name2 = `${p2.l} ${p2.f}`;
-
-  if (name1 === name2) {
-    return true;
-  }
-
-  return false;
-};
-
-const email = "fckiller@naver.com";
-const xxEmail = {
-  first: "fckiller",
-  last: {
-    domain: "naver",
-    surfix: "co.kr",
-  },
-};
+export default UseState
