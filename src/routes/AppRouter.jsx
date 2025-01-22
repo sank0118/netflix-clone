@@ -12,7 +12,7 @@ import LearnUseMemo from "./LearnReact/learn-useMemo";
 import Todo from "./todo";
 import PDSample from "./LearnReact/props-drilling/sample1";
 import PropsDrilling2 from "./props-drilling";
-import RandomNumber from "./Home/random-number";
+import RandomNumber from "./random-number";
 
 const AppRouter = () => {
   return (
